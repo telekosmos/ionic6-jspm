@@ -6,5 +6,5 @@ class HomeController {
 	}
 }
 
-
+HomeController.$inject = ['$scope'];
 export default HomeController;

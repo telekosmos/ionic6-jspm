@@ -1,23 +1,24 @@
-'use strict';
-
 // Have to import angular first before angular-mocks
 // https://github.com/Workiva/karma-jspm/issues/23
 import angular from 'angular';
 import 'angular-mocks';
-import <%= upCaseName %>Module from './<%= name %>'
-import <%= upCaseName %>Controller from './<%= name %>.controller';
-import <%= upCaseName %>Component from './<%= name %>.component';
-import <%= upCaseName %>Template from './<%= name %>.html!text';
+import 'angular-ui-router';
 
-describe('<%= upCaseName %>', ()=>{
-	let $rootScope,
+import PlaylistModule from './playlist'
+import PlaylistController from './playlist.controller';
+import PlaylistComponent from './playlist.component';
+import PlaylistTemplate from './playlist.html!text';
+
+describe('Playlist', ()=>{
+	let $rootScope, $stateParams,
 	makeController;
 	
-	beforeEach(angular.mock.module(<%= upCaseName %>Module.name));
-	beforeEach(angular.mock.inject((_$rootScope_)=>{
+	beforeEach(angular.mock.module(PlaylistModule.name));
+	beforeEach(angular.mock.inject((_$rootScope_, _$stateParams_)=>{
 		$rootScope = _$rootScope_;
-		makeController = ()=>{
-			return new <%= upCaseName %>Controller();
+		$stateParams = _$stateParams_;
+		makeController = () => {
+			return new PlaylistController($rootScope, $stateParams);
 		};
 	}));
 	
@@ -33,7 +34,6 @@ describe('<%= upCaseName %>', ()=>{
 		
 		it('should have a name property [REMOVE]', ()=>{ // erase me if you remove this.name from the controller
 			let controller = makeController();
-			
 			expect(controller).to.have.property('name'); 
 		});
 	});
@@ -42,18 +42,18 @@ describe('<%= upCaseName %>', ()=>{
 		// test the template
 		// use Regexes to test that you are using the right bindings {{  }}
 		
-		it('should have name in template [REMOVE]', ()=>{
-			expect(<%= upCaseName %>Template).to.match(/{{\s?vm\.name\s?}}/g);
+		it('should have song in template', ()=>{
+			expect(PlaylistTemplate).to.match(/{{\s?song\s?}}/g);
 		});
 	});
 	
 	
 	describe('Component', ()=>{
 			// test the component/directive itself
-			let component = <%= upCaseName %>Component();
+			let component = PlaylistComponent();
 			
 			it('should use the right template',()=>{
-				expect(component.template).to.equal(<%= upCaseName %>Template);
+				expect(component.template).to.equal(PlaylistTemplate);
 			});
 			
 			it('should use controllerAs', ()=>{
@@ -61,7 +61,7 @@ describe('<%= upCaseName %>', ()=>{
 			});
 			
 			it('should use the right controller', ()=>{
-				expect(component.controller).to.equal(<%= upCaseName %>Controller);
+				expect(component.controller).to.equal(PlaylistController);
 			});
 	});
 });
