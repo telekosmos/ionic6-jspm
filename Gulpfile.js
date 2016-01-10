@@ -93,6 +93,7 @@ var generateComponent = function(type) {
 	return gulp.src(paths.blankTemplates)
 		.pipe(template({
 			name: name,
+			type: type,
 			upCaseName: cap(name)
 		}))
 		.pipe(rename(function(path){
@@ -102,7 +103,7 @@ var generateComponent = function(type) {
 };
 
 gulp.task('component.component', function() {
-	return generateComponent('component');
+	return generateComponent('components');
 });
 gulp.task('common.component', function() {
 	return generateComponent('common');

@@ -22,7 +22,8 @@ playlistsModule.config(($stateProvider, $urlRouterProvider) => {
 				'menuContent': {
 					// template: '<playlists></playlists>'
 					templateUrl: factory.resolveToTemplate('components/playlists'),
-					controller: 'PlaylistsCtrl'
+					controller: 'PlaylistsCtrl',
+					controllerAs: 'playlists'
 				}
 			} 
 		});

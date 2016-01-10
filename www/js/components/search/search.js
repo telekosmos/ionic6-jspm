@@ -19,7 +19,8 @@ searchModule.config(($stateProvider, $urlRouterProvider) => {
 					// template: '<search></search>'		
 					// templateUrl: resolveTemplate('components/search');
 					templateUrl: factory.resolveToTemplate('components/search'),
-					controller: 'SearchController'
+					controller: 'SearchController',
+					controllerAs: 'search'
 				}
 			}
 			

@@ -1,3 +1,4 @@
+'use strict'; 
 import template from './<%= name %>.html!text';
 import controller from './<%= name %>.controller';
 import './<%= name %>.css!';
@@ -7,7 +8,7 @@ let <%= name %>Component = function(){
 		template,
 		controller,
 		restrict: 'E',
-		controllerAs: 'vm',
+		controllerAs: '<%= upCaseName %>Ctrl',
 		scope: {},
 		bindToController: true
 	};
