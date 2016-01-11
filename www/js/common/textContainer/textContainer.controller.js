@@ -7,9 +7,9 @@ class TextContainerController {
 		this.name = 'textContainer';
 		
 		this.$scope.name = 'TextContainer';
-		this.$scope.size = -2;
-		this.$scope.responseToGesture = this.responseToGesture;
-		this.$scope.test = this.test;
+		this.size = -2;
+		// this.$scope.responseToGesture = this.responseToGesture;
+		// this.$scope.test = this.test;
 	}
 
 	responseToGesture(event) {

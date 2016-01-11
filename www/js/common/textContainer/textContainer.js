@@ -23,8 +23,8 @@ textContainerModule.config(($stateProvider, $urlRouterProvider) => {
 					// template: '<search></search>'		
 					// templateUrl: resolveTemplate('components/search');
 					templateUrl: factory.resolveToTemplate('common/textContainer'),
-					controller: 'TextContainerCtrl'
-					// controllerAs: 'textContainer'
+					controller: 'TextContainerCtrl', // as textCtrl',
+					controllerAs: 'textCtrl'
 				}
 			}
 		});

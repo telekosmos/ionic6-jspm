@@ -8,16 +8,12 @@ let detectGestures = function($ionicGesture) {
 		// controller: controller,
 		// controllerAs: 'ctrl',
 		link: function(scope, elem, attrs) {
+			let controller = scope.textCtrl;
 			var gestureTypes = attrs.gestureType.split(','); // from gesture-type="hold,tap" attribute
 			
 			// responseToGesture has to be in the scope or the controller!!!!
 			gestureTypes.forEach((gestureType) => {
-				$ionicGesture.on(gestureType, scope.responseToGesture.bind(scope), elem);	
-				/*
-				$ionicGesture.on(gestureType, function(ev) {
-					console.log('on ionicGesture: '+ev.type);
-				}, elem);
-				*/
+				$ionicGesture.on(gestureType, controller.responseToGesture.bind(controller), elem);	
 			});
 		}
 	};
