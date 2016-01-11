@@ -8,7 +8,9 @@ var gulp        = require('gulp'),
     ngAnnotate  = require('gulp-ng-annotate'),
     serve       = require('browser-sync'),
     yargs       = require('yargs').argv,
-    rimraf      = require('rimraf')
+    rimraf      = require('rimraf');
+
+var camelCase = require('lodash.camelCase');
 
 var root = 'www';
 
@@ -85,7 +87,8 @@ var generateComponent = function(type) {
 		return val.charAt(0).toUpperCase() + val.slice(1);
 	};
 
-	var name = yargs.name;
+	var name = camelCase(yargs.name);
+	// console.log('component name: '+yargs.name+' (vs '+name+')');
 	var parentPath = yargs.parent || '';
 	var resolveToWhat = (type == 'common')? resolveToCommon: resolveToComponents;
 	var destPath = path.join(resolveToWhat(), parentPath, name);

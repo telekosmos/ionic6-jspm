@@ -1,0 +1,15 @@
+.textContainer {
+	color: red;
+	background-color: lightblue;
+}
+
+.textContainer h1 {
+	color: green;
+}
+
+.textContainer .content {
+	padding-left: 0.5rem;
+	padding-right: 1rem;
+	color: darkblue;
+	background-color: yellow;
+}

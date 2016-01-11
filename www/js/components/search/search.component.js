@@ -1,6 +1,6 @@
 import template from './search.html!text';
 import controller from './search.controller';
-import './search.css!';
+// import './search.css!';
 
 let searchComponent = function(){
 	return {

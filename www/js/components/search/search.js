@@ -2,6 +2,7 @@ import angular from 'angular';
 import 'angular-ui-router';
 import searchComponent from './search.component';
 import SearchController from './search.controller';
+import './search.css!';
 
 import {factory} from '../../common/helper';
 

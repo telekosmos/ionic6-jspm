@@ -1,3 +1,12 @@
 .search {
 	padding-left: 1rem;
 }
+
+.search h1 {
+	color: green;
+}
+
+.search h3 {
+	display: inline-block;
+	color: blue;
+}
