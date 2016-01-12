@@ -4,20 +4,20 @@
 // https://github.com/Workiva/karma-jspm/issues/23
 import angular from 'angular';
 import 'angular-mocks';
-import <%= upCaseName %>Module from './<%= name %>'
-import <%= upCaseName %>Controller from './<%= name %>.controller';
-import <%= upCaseName %>Component from './<%= name %>.component';
-import <%= upCaseName %>Template from './<%= name %>.html!text';
+import TextContainerModule from './textContainer'
+import TextContainerController from './textContainer.controller';
+import TextContainerComponent from './textContainer.component';
+import TextContainerTemplate from './textContainer.html!text';
 
-describe('<%= upCaseName %>', ()=>{
+describe('TextContainer', ()=>{
 	let $rootScope,
 	makeController;
 	
-	beforeEach(angular.mock.module(<%= upCaseName %>Module.name));
+	beforeEach(angular.mock.module(TextContainerModule.name));
 	beforeEach(angular.mock.inject((_$rootScope_)=>{
 		$rootScope = _$rootScope_;
 		makeController = ()=>{
-			return new <%= upCaseName %>Controller();
+			return new TextContainerController();
 		};
 	}));
 	
@@ -43,17 +43,17 @@ describe('<%= upCaseName %>', ()=>{
 		// use Regexes to test that you are using the right bindings {{  }}
 		
 		it('should have name in template [REMOVE]', ()=>{
-			expect(<%= upCaseName %>Template).to.match(/{{\s?vm\.name\s?}}/g);
+			expect(TextContainerTemplate).to.match(/{{\s?vm\.name\s?}}/g);
 		});
 	});
 	
 	
 	describe('Component', ()=>{
 			// test the component/directive itself
-			let component = <%= upCaseName %>Component();
+			let component = TextContainerComponent();
 			
 			it('should use the right template',()=>{
-				expect(component.template).to.equal(<%= upCaseName %>Template);
+				expect(component.template).to.equal(TextContainerTemplate);
 			});
 			
 			it('should use controllerAs', ()=>{
@@ -61,7 +61,7 @@ describe('<%= upCaseName %>', ()=>{
 			});
 			
 			it('should use the right controller', ()=>{
-				expect(component.controller).to.equal(<%= upCaseName %>Controller);
+				expect(component.controller).to.equal(TextContainerController);
 			});
 	});
 });

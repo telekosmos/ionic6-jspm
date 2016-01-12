@@ -2,6 +2,7 @@ import angular from 'angular';
 import 'angular-ui-router';
 import searchComponent from './search.component';
 import SearchController from './search.controller';
+import './search.css!';
 
 import {factory} from '../../common/helper';
 
@@ -19,7 +20,8 @@ searchModule.config(($stateProvider, $urlRouterProvider) => {
 					// template: '<search></search>'		
 					// templateUrl: resolveTemplate('components/search');
 					templateUrl: factory.resolveToTemplate('components/search'),
-					controller: 'SearchController'
+					controller: 'SearchController',
+					controllerAs: 'search'
 				}
 			}
 			

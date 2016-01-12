@@ -3,7 +3,7 @@
 	<!-- main content -->
   <ion-side-menu-content>
     <ion-nav-bar class="bar-stable"> <!-- updates navigation for us -->
-      <ion-nav-back-button></ion-nav-back-button>
+      <ion-nav-back-button ng-click="rootCtrl.goBack()"></ion-nav-back-button>
 
       <ion-nav-buttons side="left"> 
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
@@ -40,6 +40,9 @@
         </ion-item>
         <ion-item menu-close href="#/root/search">
           Search
+        </ion-item>
+        <ion-item menu-close href="#/root/textContainer">
+          (Resizable) text
         </ion-item>
       </ion-list>
     </ion-content>
