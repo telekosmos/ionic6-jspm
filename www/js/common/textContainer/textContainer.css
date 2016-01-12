@@ -8,8 +8,10 @@
 }
 
 .textContainer .content {
-	padding-left: 0.5rem;
-	padding-right: 1rem;
+	padding-left: 1rem;
+	padding-right: 1.5rem;
+	padding-bottom: 1rem;
+	font-size: 1em;
 	color: darkblue;
 	background-color: yellow;
 }

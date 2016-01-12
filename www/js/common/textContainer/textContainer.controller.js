@@ -7,19 +7,23 @@ class TextContainerController {
 		this.name = 'textContainer';
 		
 		this.$scope.name = 'TextContainer';
-		this.size = -2;
+		this.size = 12;
+		this.stepSize = 20;
+		this.fontsizeCls = ''; 
 		// this.$scope.responseToGesture = this.responseToGesture;
 		// this.$scope.test = this.test;
 	}
 
 	responseToGesture(event) {
+		// angular.element(event.currentTarget) // -> jquery elem
 		console.log('responseToGesture: '+event.type);
 		switch(event.type) {
 			case 'dragright': this.size++; break;
-			case 'dragleft': this.size--; break;
+			case 'dragleft': this.size = this.size > 12? this.size-1: 12; break;
 			default: console.log('event type: '+event.type);
 		}
 		console.log('size: '+this.size);
+		this.$scope.$apply();
 	}
 
 	test(event) {
