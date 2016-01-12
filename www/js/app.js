@@ -10,7 +10,6 @@ import AppComponent from './app.component';
 import 'normalize.css';
 
 const APP_CONTAINER_ID = 'app-container';
-console.log(`app.js common module name: ${Common.name}`);
 let appModule = angular.module('app', [
 	'ui.router', 'ionic', 'ngSanitize',
 	Common.name,
