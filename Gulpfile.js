@@ -8,11 +8,11 @@ var gulp        = require('gulp'),
     ngAnnotate  = require('gulp-ng-annotate'),
     serve       = require('browser-sync'),
     yargs       = require('yargs').argv,
-    rimraf      = require('rimraf');
+    rimraf      = require('rimraf')
 
-var camelCase = require('lodash.camelCase');
-
-var root = 'www';
+var packageJson = require('./package.json');
+var root = 'client';
+var rootJs = 'js';
 
 // helper method to resolveToApp paths
 var resolveTo = function(resolvePath) {
@@ -22,9 +22,9 @@ var resolveTo = function(resolvePath) {
 	}
 };
 
-var resolveToApp = resolveTo('js'); // app/{glob}
-var resolveToComponents = resolveTo('js/components'); // app/components/{glob}
-var resolveToCommon = resolveTo('js/common');
+var resolveToApp = resolveTo(rootJs); // app/{glob}
+var resolveToComponents = resolveTo(rootJs+'/components'); // app/components/{glob}
+var resolveToCommon = resolveTo(rootJs+'/common');
 
 // map of all our paths
 var paths = {
@@ -39,10 +39,9 @@ var paths = {
 
 gulp.task('serve', function(){
 	'use strict'
-	console.log('Serving and reloading for css at '+paths.css);
-	require('chokidar-socket-emitter')({port: 8082, path: 'www', relativeTo: 'www'});
+	require('chokidar-socket-emitter')({port: 8081, path: 'client', relativeTo: 'client'})
 	serve({
-		port: process.env.PORT || 3333,
+		port: process.env.PORT || 3001,
 		open: false,
 		files: [].concat(
 			[paths.css],
@@ -74,10 +73,19 @@ gulp.task('build', function() {
 		})
 		.then(function() {
 			// Inject minified script into index
-		  return gulp.src('www/index.html')
+		  return gulp.src('client/index.html')
 				.pipe(htmlreplace({
-					'js': 'app.min.js'
+					'js': ['system.js', 'app.min.js']
 				}))
+				.pipe(gulp.dest(paths.dist));
+		})
+		.then(function() { // copy system.js file
+			var baseUrl = packageJson.jspm.directories.baseURL;
+			var packagesFolder = packageJson.jspm.directories.packages;
+			packagesFolder = typeof packagesFolder === 'undefined'? 'jspm_packages': packagesFolder; 
+			var basePath = baseUrl+'/'+packagesFolder;
+
+			return gulp.src(basePath+'/system.js', {base: basePath})
 				.pipe(gulp.dest(paths.dist));
 		});
 });
@@ -87,8 +95,7 @@ var generateComponent = function(type) {
 		return val.charAt(0).toUpperCase() + val.slice(1);
 	};
 
-	var name = camelCase(yargs.name);
-	// console.log('component name: '+yargs.name+' (vs '+name+')');
+	var name = yargs.name;
 	var parentPath = yargs.parent || '';
 	var resolveToWhat = (type == 'common')? resolveToCommon: resolveToComponents;
 	var destPath = path.join(resolveToWhat(), parentPath, name);
@@ -96,7 +103,6 @@ var generateComponent = function(type) {
 	return gulp.src(paths.blankTemplates)
 		.pipe(template({
 			name: name,
-			type: type,
 			upCaseName: cap(name)
 		}))
 		.pipe(rename(function(path){
@@ -106,7 +112,7 @@ var generateComponent = function(type) {
 };
 
 gulp.task('component.component', function() {
-	return generateComponent('components');
+	return generateComponent('component');
 });
 gulp.task('common.component', function() {
 	return generateComponent('common');

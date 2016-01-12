@@ -15,7 +15,7 @@
   "license": "ISC",
   "jspm": {
     "directories": {
-      "baseURL": "www"
+      "baseURL": "client"
     },
     "configFile": "jspm.config.js",
     "dependencies": {
@@ -33,6 +33,7 @@
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
       "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "clean-css": "npm:clean-css@^3.4.9",
       "core-js": "npm:core-js@^1.1.4"
     }
   },
