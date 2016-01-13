@@ -8,11 +8,16 @@ var gulp        = require('gulp'),
     ngAnnotate  = require('gulp-ng-annotate'),
     serve       = require('browser-sync'),
     yargs       = require('yargs').argv,
-    rimraf      = require('rimraf')
+    rimraf      = require('rimraf'),
+    filter = require('gulp-filter'),
+    chalk = require('chalk');
 
 var packageJson = require('./package.json');
 var root = 'client';
 var rootJs = 'js';
+var baseUrl = packageJson.jspm.directories.baseURL;
+var packagesFolder = packageJson.jspm.directories.packages;
+packagesFolder = typeof packagesFolder === 'undefined'? 'jspm_packages': packagesFolder;
 
 // helper method to resolveToApp paths
 var resolveTo = function(resolvePath) {
@@ -34,7 +39,9 @@ var paths = {
 		path.join(root, 'index.html')
 	],
 	blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**'),
-	dist: path.join(__dirname, 'dist/')
+	projectTemplates: path.join(__dirname, 'generator', 'ionic'),
+	dist: path.join(__dirname, 'www/'),
+	assets: [baseUrl+'/'+packagesFolder, baseUrl+'/assets']
 };
 
 gulp.task('serve', function(){
@@ -67,31 +74,42 @@ gulp.task('build', function() {
 			// Also create a fully annotated minified copy
 			return gulp.src(dist)
 				.pipe(ngAnnotate())
-				.pipe(uglify())
-				.pipe(rename('app.min.js'))
+				// .pipe(uglify())
+				// .pipe(rename('app.min.js'))
 				.pipe(gulp.dest(paths.dist))
 		})
 		.then(function() {
 			// Inject minified script into index
 		  return gulp.src('client/index.html')
 				.pipe(htmlreplace({
-					'js': ['system.js', 'app.min.js']
+					'js': ['system.js', 'system.js.map', 'app.js'] // 'app.min.js']
 				}))
 				.pipe(gulp.dest(paths.dist));
 		})
-		.then(function() { // copy system.js file
-			var baseUrl = packageJson.jspm.directories.baseURL;
-			var packagesFolder = packageJson.jspm.directories.packages;
-			packagesFolder = typeof packagesFolder === 'undefined'? 'jspm_packages': packagesFolder; 
+		.then(function() { // copy system.js file(s) to dist dir
 			var basePath = baseUrl+'/'+packagesFolder;
+			var files2copy = [basePath+'/system.js', basePath+'/system.js.map']
 
-			return gulp.src(basePath+'/system.js', {base: basePath})
+			return gulp.src(files2copy, {base: basePath})
+				.pipe(gulp.dest(paths.dist));
+		})
+		.then(function() { // copy assets...
+			var basePath = baseUrl+'/'+packagesFolder;
+			var vinylAssets = paths.assets.map(function(elem) {
+				return elem+'/**';
+			});
+			var assetsMatch = '**/*.{svg,png,eot,ttf,wot,gif,jpg}';
+			var assetsFilter = filter([assetsMatch]);
+			
+			// return gulp.src([basePath+'/**'], {base: baseUrl})
+			return gulp.src(vinylAssets, {base: baseUrl})
+				.pipe(assetsFilter) 
 				.pipe(gulp.dest(paths.dist));
 		});
 });
 
 var generateComponent = function(type) {
-	var cap = function(val){
+	var cap = function(val) {
 		return val.charAt(0).toUpperCase() + val.slice(1);
 	};
 
@@ -116,6 +134,29 @@ gulp.task('component.component', function() {
 });
 gulp.task('common.component', function() {
 	return generateComponent('common');
+});
+
+gulp.task('ionic', function() {
+	var name = yargs.name;
+	if (!name) {
+		console.log(chalk.red('Must provide at least the application name:'));
+		console.log(chalk.yellow('gulp ionic --name myAppName'));
+		return;
+	}
+	var appId = yargs.appid? yargs.appid: 'org.acme.'+name.split(' ').join().toLowerCase();
+	var appAuthor = yargs.author? yargs.author: '';
+	var appDesc = yargs.desc? yargs.desc: '';
+	var appEmail = yargs.email? yargs.email: '';
+
+	return gulp.src(paths.projectTemplates+'/*', {base: paths.projectTemplates})
+		.pipe(template({
+			ionicAppName: name,
+			ionicAppId: appId,
+			appAuthor: appAuthor,
+			appDescription: appDesc,
+			appEmail: appEmail
+		}))
+		.pipe(gulp.dest(__dirname));
 });
 
 /*

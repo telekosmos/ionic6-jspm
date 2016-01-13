@@ -20,8 +20,8 @@ homeModule.config(($stateProvider, $urlRouterProvider) => {
 			url: '/home',
 			views: {
 				'menuContent': {
-					// template: '<home></home>  helperFactory.resolveToTemplate('common/home'),
-					templateUrl: factory.resolveToTemplate('common/home'), // 'js/common/home/home.html',
+					template: template,
+					// templateUrl: factory.resolveToTemplate('common/home'), // 'js/common/home/home.html',
 					controller: 'HomeController',
 					controllerAs: 'home'
 				}

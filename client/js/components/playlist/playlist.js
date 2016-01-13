@@ -4,6 +4,7 @@ import angular from 'angular';
 import 'angular-ui-router';
 import playlistComponent from './playlist.component';
 import PlaylistCtrl from './playlist.controller';
+import template from './playlist.html!text';
 
 import {factory} from '../../common/helper';
 
@@ -18,9 +19,8 @@ playlistModule.config(($stateProvider, $urlRouterProvider) => {
 			url: '/playlists/:playlistId',
 			views: {
 				'menuContent': {
-					// template: '<search></search>'		
-					// templateUrl: resolveTemplate('components/search');
-					templateUrl: factory.resolveToTemplate('components/playlist'),
+					template: template,		
+					// templateUrl: factory.resolveToTemplate('components/playlist'),
 					controller: 'PlaylistCtrl',
 					controllerAs: 'playlist'
 				}

@@ -1,6 +1,8 @@
 .textContainer {
 	color: red;
-	background-color: lightblue;
+	/* background-image: url("/js/common/iphonegears.jpg"); */
+	background: url("../../../assets/img/iphonegears.jpg") center no-repeat border-box fixed yellow;
+	background-size: cover;
 }
 
 .textContainer h1 {
@@ -13,5 +15,5 @@
 	padding-bottom: 1rem;
 	font-size: 1em;
 	color: darkblue;
-	background-color: yellow;
+	border: 1px dotted black;
 }
