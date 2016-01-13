@@ -14,6 +14,9 @@ var gulp        = require('gulp'),
 var packageJson = require('./package.json');
 var root = 'client';
 var rootJs = 'js';
+var baseUrl = packageJson.jspm.directories.baseURL;
+var packagesFolder = packageJson.jspm.directories.packages;
+packagesFolder = typeof packagesFolder === 'undefined'? 'jspm_packages': packagesFolder;
 
 // helper method to resolveToApp paths
 var resolveTo = function(resolvePath) {
@@ -35,7 +38,8 @@ var paths = {
 		path.join(root, 'index.html')
 	],
 	blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**'),
-	dist: path.join(__dirname, 'dist/')
+	dist: path.join(__dirname, 'www/'),
+	assets: [baseUrl+'/'+packagesFolder, baseUrl+'/assets']
 };
 
 gulp.task('serve', function(){
@@ -60,10 +64,6 @@ gulp.task('serve', function(){
 });
 
 gulp.task('build', function() {
-	var baseUrl = packageJson.jspm.directories.baseURL;
-	var packagesFolder = packageJson.jspm.directories.packages;
-	packagesFolder = typeof packagesFolder === 'undefined'? 'jspm_packages': packagesFolder;
-	
 	var dist = path.join(paths.dist + 'app.js');
 	rimraf.sync(path.join(paths.dist, '*'));
 	// Use JSPM to bundle our app
@@ -93,11 +93,14 @@ gulp.task('build', function() {
 		})
 		.then(function() { // copy assets...
 			var basePath = baseUrl+'/'+packagesFolder;
+			var vinylAssets = paths.assets.map(function(elem) {
+				return elem+'/**';
+			});
 			var assetsMatch = '**/*.{svg,png,eot,ttf,wot,gif,jpg}';
-			var mapsMatch = '**/*.map';
 			var assetsFilter = filter([assetsMatch]);
 			
-			return gulp.src([basePath+'/**'], {base: baseUrl})
+			// return gulp.src([basePath+'/**'], {base: baseUrl})
+			return gulp.src(vinylAssets, {base: baseUrl})
 				.pipe(assetsFilter) 
 				.pipe(gulp.dest(paths.dist));
 		});
