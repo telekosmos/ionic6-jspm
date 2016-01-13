@@ -9,7 +9,8 @@ var gulp        = require('gulp'),
     serve       = require('browser-sync'),
     yargs       = require('yargs').argv,
     rimraf      = require('rimraf'),
-    filter = require('gulp-filter');
+    filter = require('gulp-filter'),
+    chalk = require('chalk');
 
 var packageJson = require('./package.json');
 var root = 'client';
@@ -38,6 +39,7 @@ var paths = {
 		path.join(root, 'index.html')
 	],
 	blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**'),
+	projectTemplates: path.join(__dirname, 'generator', 'ionic'),
 	dist: path.join(__dirname, 'www/'),
 	assets: [baseUrl+'/'+packagesFolder, baseUrl+'/assets']
 };
@@ -107,7 +109,7 @@ gulp.task('build', function() {
 });
 
 var generateComponent = function(type) {
-	var cap = function(val){
+	var cap = function(val) {
 		return val.charAt(0).toUpperCase() + val.slice(1);
 	};
 
@@ -132,6 +134,29 @@ gulp.task('component.component', function() {
 });
 gulp.task('common.component', function() {
 	return generateComponent('common');
+});
+
+gulp.task('ionic', function() {
+	var name = yargs.name;
+	if (!name) {
+		console.log(chalk.red('Must provide at least the application name:'));
+		console.log(chalk.yellow('gulp ionic --name myAppName'));
+		return;
+	}
+	var appId = yargs.appid? yargs.appid: 'org.acme.'+name.split(' ').join().toLowerCase();
+	var appAuthor = yargs.author? yargs.author: '';
+	var appDesc = yargs.desc? yargs.desc: '';
+	var appEmail = yargs.email? yargs.email: '';
+
+	return gulp.src(paths.projectTemplates+'/*', {base: paths.projectTemplates})
+		.pipe(template({
+			ionicAppName: name,
+			ionicAppId: appId,
+			appAuthor: appAuthor,
+			appDescription: appDesc,
+			appEmail: appEmail
+		}))
+		.pipe(gulp.dest(__dirname));
 });
 
 /*

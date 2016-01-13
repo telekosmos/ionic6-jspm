@@ -40,6 +40,7 @@
   "devDependencies": {
     "browser-sync": "^2.7.6",
     "chai": "^2.1.0",
+    "chalk": "^1.1.1",
     "chokidar-socket-emitter": "^0.3.0",
     "gulp": "^3.9.0",
     "gulp-filter": "^3.0.1",
