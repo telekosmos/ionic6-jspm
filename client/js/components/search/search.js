@@ -1,7 +1,10 @@
+"use strict";
+
 import angular from 'angular';
 import 'angular-ui-router';
 import searchComponent from './search.component';
 import SearchController from './search.controller';
+import template from './search.html!text';
 import './search.css!';
 
 import {factory} from '../../common/helper';
@@ -17,9 +20,8 @@ searchModule.config(($stateProvider, $urlRouterProvider) => {
 			url: '/search',
 			views: {
 				'menuContent': {
-					// template: '<search></search>'		
-					// templateUrl: resolveTemplate('components/search');
-					templateUrl: factory.resolveToTemplate('components/search'),
+					template: template,		
+					// templateUrl: factory.resolveToTemplate('components/search'),
 					controller: 'SearchController',
 					controllerAs: 'search'
 				}

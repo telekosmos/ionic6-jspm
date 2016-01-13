@@ -5,6 +5,7 @@ import 'angular-ui-router';
 import textContainerComponent from './textContainer.component';
 import textContainerBehavior from './textContainer.behavior';
 import TextContainerCtrl from './textContainer.controller';
+import template from './textContainer.html!text';
 import './textContainer.css!';
 
 import {factory} from '../../common/helper';
@@ -20,9 +21,8 @@ textContainerModule.config(($stateProvider, $urlRouterProvider) => {
 			url: '/textContainer',
 			views: {
 				'menuContent': {
-					// template: '<search></search>'		
-					// templateUrl: resolveTemplate('components/search');
-					templateUrl: factory.resolveToTemplate('common/textContainer'),
+					template: template,		
+					// templateUrl: factory.resolveToTemplate('common/textContainer'),
 					controller: 'TextContainerCtrl', // as textCtrl',
 					controllerAs: 'textCtrl'
 				}

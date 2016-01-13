@@ -6,6 +6,7 @@ import 'angular-sanitize';
 
 import playlistsComponent from './playlists.component';
 import PlaylistsCtrl from './playlists.controller';
+import template from './playlists.html!text';
 
 import {factory} from '../../common/helper';
 
@@ -20,8 +21,8 @@ playlistsModule.config(($stateProvider, $urlRouterProvider) => {
 			url: '/playlists',
 			views:{
 				'menuContent': {
-					// template: '<playlists></playlists>'
-					templateUrl: factory.resolveToTemplate('components/playlists'),
+					template: template,
+					// templateUrl: factory.resolveToTemplate('components/playlists'),
 					controller: 'PlaylistsCtrl',
 					controllerAs: 'playlists'
 				}

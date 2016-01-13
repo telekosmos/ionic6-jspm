@@ -8,7 +8,8 @@ var gulp        = require('gulp'),
     ngAnnotate  = require('gulp-ng-annotate'),
     serve       = require('browser-sync'),
     yargs       = require('yargs').argv,
-    rimraf      = require('rimraf')
+    rimraf      = require('rimraf'),
+    filter = require('gulp-filter');
 
 var packageJson = require('./package.json');
 var root = 'client';
@@ -59,6 +60,10 @@ gulp.task('serve', function(){
 });
 
 gulp.task('build', function() {
+	var baseUrl = packageJson.jspm.directories.baseURL;
+	var packagesFolder = packageJson.jspm.directories.packages;
+	packagesFolder = typeof packagesFolder === 'undefined'? 'jspm_packages': packagesFolder;
+	
 	var dist = path.join(paths.dist + 'app.js');
 	rimraf.sync(path.join(paths.dist, '*'));
 	// Use JSPM to bundle our app
@@ -67,25 +72,33 @@ gulp.task('build', function() {
 			// Also create a fully annotated minified copy
 			return gulp.src(dist)
 				.pipe(ngAnnotate())
-				.pipe(uglify())
-				.pipe(rename('app.min.js'))
+				// .pipe(uglify())
+				// .pipe(rename('app.min.js'))
 				.pipe(gulp.dest(paths.dist))
 		})
 		.then(function() {
 			// Inject minified script into index
 		  return gulp.src('client/index.html')
 				.pipe(htmlreplace({
-					'js': ['system.js', 'app.min.js']
+					'js': ['system.js', 'system.js.map', 'app.js'] // 'app.min.js']
 				}))
 				.pipe(gulp.dest(paths.dist));
 		})
-		.then(function() { // copy system.js file
-			var baseUrl = packageJson.jspm.directories.baseURL;
-			var packagesFolder = packageJson.jspm.directories.packages;
-			packagesFolder = typeof packagesFolder === 'undefined'? 'jspm_packages': packagesFolder; 
+		.then(function() { // copy system.js file(s) to dist dir
 			var basePath = baseUrl+'/'+packagesFolder;
+			var files2copy = [basePath+'/system.js', basePath+'/system.js.map']
 
-			return gulp.src(basePath+'/system.js', {base: basePath})
+			return gulp.src(files2copy, {base: basePath})
+				.pipe(gulp.dest(paths.dist));
+		})
+		.then(function() { // copy assets...
+			var basePath = baseUrl+'/'+packagesFolder;
+			var assetsMatch = '**/*.{svg,png,eot,ttf,wot,gif,jpg}';
+			var mapsMatch = '**/*.map';
+			var assetsFilter = filter([assetsMatch]);
+			
+			return gulp.src([basePath+'/**'], {base: baseUrl})
+				.pipe(assetsFilter) 
 				.pipe(gulp.dest(paths.dist));
 		});
 });
