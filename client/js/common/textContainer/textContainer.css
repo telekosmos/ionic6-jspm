@@ -1,19 +1,25 @@
 .textContainer {
 	color: red;
 	/* background-image: url("/js/common/iphonegears.jpg"); */
-	background: url("../../../assets/img/iphonegears.jpg") center no-repeat border-box fixed yellow;
+	background: url("../../../assets/img/bg-grey.png") center no-repeat border-box fixed yellow;
 	background-size: cover;
-}
-
-.textContainer h1 {
-	color: green;
 }
 
 .textContainer .content {
 	padding-left: 1rem;
 	padding-right: 1.5rem;
 	padding-bottom: 1rem;
-	font-size: 1em;
-	color: darkblue;
-	border: 1px dotted black;
+	font-size: 1.5em;
+	color: black;
+}
+
+div.img-container {
+	width: 300px;
+	height: 420px;
+	margin: 0 auto;
+}
+
+div.img-container img {
+	width: 100%;
+	height: auto;
 }

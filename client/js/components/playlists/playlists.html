@@ -1,6 +1,6 @@
 <ion-view view-title="Playlists">
   <ion-content>
-  	Playlists (from controller <span ng-bind="name"></span> v{{playlists.version}}):
+  	Playlists (from controller <span ng-bind-html="name"></span> v{{playlists.version}}):
     <ion-list>
       <ion-item class="playlist-item" ng-repeat="playlist in lists" 
       	href="#/root/playlists/{{playlist.id}}">

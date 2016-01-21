@@ -2,11 +2,11 @@
 	color: red;
 }
 
-h2 {
+h3 {
 	display: inline-block;
 }
 
 .song {
 	font-weight: bolder;
-	color: pink;
+	color: #ff6699;
 }

@@ -8,10 +8,10 @@ class PlaylistController {
 		this.lists = [
 			{id: 1, songs: ['One1', 'Two1', 'Three1'], title: 'List1'},
 			{id: 2, songs: ['One2', 'Two2', 'Three2'], title: 'List2'},
-			{id: 3, songs: ['One3', 'Two3', 'Three3'], title: 'List3'},
-			{id: 4, songs: ['One4', 'Two4', 'Three4'], title: 'List4'},
+			{id: 3, songs: ['One3', 'Two3', 'Three3', 'Four3'], title: 'List3'},
+			{id: 4, songs: ['One4', 'Two4'], title: 'List4'},
 			{id: 5, songs: ['One5', 'Two5', 'Three5'], title: 'List5'},
-			{id: 6, songs: ['One6', 'Two6', 'Three6'], title: 'List6'}
+			{id: 6, songs: ['One6', 'Two6', 'Three6', 'Four6', 'Five6'], title: 'List6'}
 		];
 
 		let chosen = this.lists.filter((item) => item.id == $stateParams.playlistId);

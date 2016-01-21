@@ -10,3 +10,11 @@
 	display: inline-block;
 	color: blue;
 }
+
+.search input[type=text] {
+	border: 1px dotted black;
+}
+
+.search span {
+	text-decoration: underline overline;
+}

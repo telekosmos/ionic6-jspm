@@ -24,6 +24,7 @@ let detectGestures = function($ionicGesture) {
 				dec = Math.trunc(dec*10)/10;
 				let newRes = int+dec;
 				console.log(`int: ${int}; dec: ${dec}`);
+				
 				elem.css('font-size', newRes+'em');
 			});
 		}

@@ -38,6 +38,7 @@ var paths = {
 		resolveToApp('**/*.html'),
 		path.join(root, 'index.html')
 	],
+	js: resolveToApp('**/*.js'),
 	blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**'),
 	projectTemplates: path.join(__dirname, 'generator', 'ionic'),
 	dist: path.join(__dirname, 'www/'),
@@ -52,11 +53,12 @@ gulp.task('serve', function(){
 		open: false,
 		files: [].concat(
 			[paths.css],
-			paths.html
+			paths.html,
+			paths.js
 		),
 		server: {
 			baseDir: root,
-			// serve our jspm dependencies with the client folder
+			// serve our jspm dependencies from the client folder
 			routes: {
 				'/jspm.config.js': './jspm.config.js',
 				'/jspm_packages': './jspm_packages'

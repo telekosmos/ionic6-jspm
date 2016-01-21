@@ -4,7 +4,7 @@ class TextContainerController {
 	constructor($scope) {
 		console.log('Init TextContainerController');
 		this.$scope = $scope;
-		this.name = 'textContainer';
+		this.name = 'TextContainer controller';
 		
 		this.$scope.name = 'TextContainer';
 		this.size = 12;
