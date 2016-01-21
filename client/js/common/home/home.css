@@ -1,0 +1,13 @@
+.home {
+	color: darkblue;
+	padding-left: 1rem;
+}
+
+.home a {
+	text-decoration: none;
+	color: #0d5aae;
+}
+
+.home h4 {
+	color: darkgreen;
+}
