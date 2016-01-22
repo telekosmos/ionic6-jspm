@@ -2,6 +2,8 @@
 
 import angular from 'angular';
 import 'angular-ui-router';
+// import TextContent from '../textContent/textContent';
+
 import searchComponent from './search.component';
 import SearchController from './search.controller';
 import template from './search.html!text';

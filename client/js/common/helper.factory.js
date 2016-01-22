@@ -1,3 +1,4 @@
+"use strict";
 
 let HelperFactory = function(ROOT_JS) {
 	const user = {};
@@ -18,7 +19,8 @@ let HelperFactory = function(ROOT_JS) {
 */
 	return {
 		resolveToTemplate
-	}
+	};
+
 };
 
 export default HelperFactory; 
