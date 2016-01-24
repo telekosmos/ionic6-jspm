@@ -6,9 +6,24 @@ export class HomeServices {
 	}
 };
 
-// export HomeServices;
-export class GlobalSettings {
+
+class ClassGlobals {
 	constructor() {
-		this.fontSize = 1;
+		this.font = {
+			fontSize: this.MIN_FONTSIZE,
+			stepSize: 35,
+			fontCount: this.MIN_FONTCOUNT // counting of slide values
+		};
 	}
+
+	get MIN_FONTSIZE() {
+		return 1.1;
+	}
+
+	get MIN_FONTCOUNT() {
+		return 12;
+	}
+	
 }
+
+export let GlobalSettings = () => new ClassGlobals();

@@ -1,40 +1,78 @@
 'use strict';
 
-import 'ionic';
+// import 'ionic';
 
-const MIN_COUNT = 12;
-const MIN_SIZE = 1;
 class GestureCtrl {
-	constructor($scope) {
-		this.fontCount = MIN_COUNT;
-		this.fontSize = MIN_SIZE;
-		this.stepSize = 30;
+	constructor($scope, globals) {
+		this.font = this.localFont;
+
+		this._global = false;
+
+		this._globals = globals;
+		this._$scope = $scope;
+	}
+
+	get localFont() {
+		return {
+			fontCount: this.MIN_COUNT,
+			fontSize: this.MIN_SIZE,
+			stepSize: 30 // step to increase the font size
+		};
+	}
+
+	get globalFont() {
+		return this._globals.font;
+	}
+
+	get MIN_SIZE() {
+		return 1;
+	}
+
+	get MIN_COUNT() {
+		return 12;
+	}
+
+	set global(val) {
+		this._global = val;
+		this.font = val? this._globals.font: this.localFont;	
+	}
+
+	get global() {
+		return this._global;
 	}
 
 	onDragright() {
-		this.fontCount++;
-		console.log('Drag right: '+ this.fontCount);
-		this.updateSize(this.fontCount);
+		this.font.fontCount++;
+		this.updateSize();
 	}
 
 	onDragleft() {
-		this.fontCount = this.fontCount <= MIN_COUNT? this.fontCount: this.fontCount-1;
-		console.log('Drag left: '+this.fontCount);
-		this.updateSize(this.fontCount);
+		this.font.fontCount = this.font.fontCount <= this.MIN_COUNT
+			? this.font.fontCount
+			: this.font.fontCount-1;
+		
+		this.updateSize();
 	}
 
-	updateSize(newVal) { //, oldVal) {
-		// console.log(`from ${oldVal} to ${newVal}`);
-		let res = newVal/this.stepSize;
-		let int = Math.floor(res);
-		let dec = res-int;
+	updateSize() { 
+		let newRes = this._count2Size(this.font.fontCount);
+
+		let newFontSize = newRes < this.MIN_SIZE/2? this.font.fontSize: newRes;
+		this.font.fontSize = newFontSize;
+		this._$scope.$digest();
+		return newRes;
+	}
+
+	_count2Size(count) {
+		let quotient = count/this.font.stepSize;
+		let intQuotient = Math.floor(quotient);
+		let dec = quotient-intQuotient;
 		dec = Math.trunc(dec*10)/10;
-		let newRes = int+dec;
-		console.log(`[GestureCtrl]: int: ${int}; dec: ${dec} => fontSize ${newRes}`);
-		this.fontSize = newRes < MIN_SIZE/2? this.fontSize: newRes;
+		let newRes = intQuotient+dec;
+
 		return newRes;
 	}
 }
-GestureCtrl.$inject = ['$scope'];
+GestureCtrl.$inject = ['$scope', 'globals'];
 
 export default GestureCtrl;

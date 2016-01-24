@@ -1,5 +1,5 @@
 <ion-view view-title="TextContainer">
-  <ion-content class="textContainer" gestures gesture-type="dragright,dragleft">
+  <ion-content class="textContainer" gestures gesture-type="dragright,dragleft" global>
 	  <h1>{{textCtrl.name}}</h1>
 	  <h3>Font size: {{textCtrl.size}} (vs {{textCtrl.rootFontSize}}</h3>
   	<div class="content" ng-repeat="n in [1, 2, 3]">
