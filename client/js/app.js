@@ -1,3 +1,5 @@
+"use strict"; 
+
 import angular from 'angular';
 import 'angular-ui-router';
 import 'angular-sanitize';
@@ -11,12 +13,13 @@ import AppComponent from './app.component';
 
 const APP_CONTAINER_ID = 'app-container';
 let appModule = angular.module('app', [
-	'ui.router', 'ionic', 'ngSanitize',
+	'ui.router', 'ionic', 'ngSanitize', 
 	Common.name,
 	Components.name
 ]);
 
-appModule.run(function($ionicPlatform) {
+appModule.run(function($rootScope, $ionicPlatform) {
+	$rootScope.fontSize = '16px';
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -54,7 +57,7 @@ angular.element(document).ready(() => {
 				System.hotReloader.on('change', (name) => {
 					console.log(name, 'changed')
 				});
-			})
+			});
 		}
 	}
 	angular.bootstrap(container, [appModule.name]), {
