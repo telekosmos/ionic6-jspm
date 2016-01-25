@@ -9,5 +9,11 @@
 }
 
 .home h4 {
-	color: darkgreen;
+	color: #0d5aae;
+}
+
+.msg {
+	font-size: 1.3em;
+	font-weight: 200;
+	line-height: 1.3;
 }

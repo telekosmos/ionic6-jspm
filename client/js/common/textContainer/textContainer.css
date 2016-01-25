@@ -1,16 +1,15 @@
 .textContainer {
-	color: red;
-	/* background-image: url("/js/common/iphonegears.jpg"); */
+	color: black;
+	/*
 	background: url("../../../assets/img/bg-grey.png") center no-repeat border-box fixed yellow;
 	background-size: cover;
+	*/
 }
 
 .textContainer .content {
 	padding-left: 1rem;
 	padding-right: 1.5rem;
 	padding-bottom: 1rem;
-	font-size: 1em;
-	color: black;
 }
 
 div.img-container {

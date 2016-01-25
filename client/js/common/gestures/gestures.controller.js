@@ -1,13 +1,11 @@
 'use strict';
 
-// import 'ionic';
-
 class GestureCtrl {
 	constructor($scope, globals) {
+		console.log('Init GestureCtrl');
 		this.font = this.localFont;
 
 		this._global = false;
-
 		this._globals = globals;
 		this._$scope = $scope;
 	}

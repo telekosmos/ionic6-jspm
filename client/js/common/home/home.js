@@ -31,7 +31,7 @@ homeModule.config(($stateProvider, $urlRouterProvider) => {
 });
 
 homeModule.factory('globals', GlobalSettings);
-homeModule.directive('home', homeComponent);
+// homeModule.directive('home', homeComponent);
 homeModule.controller('HomeController', HomeController);
 
 export default homeModule;

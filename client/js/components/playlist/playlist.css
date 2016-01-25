@@ -1,8 +1,15 @@
 .playlist {
-	color: red;
+	color: black;
 }
 
-h3 {
+.text-container {
+	padding-left: 2%;
+	padding-right: 2%;
+	margin-bottom: 1%;
+	margin-top: 1%;
+}
+
+h4 {
 	display: inline-block;
 }
 
