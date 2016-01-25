@@ -33,7 +33,7 @@ textContainerModule.config(($stateProvider, $urlRouterProvider) => {
 
 
 // textContainerModule.directive('textContainer', textContainerComponent);
-textContainerModule.directive('detectGestures', textContainerBehavior);
+// textContainerModule.directive('detectGestures', textContainerBehavior);
 textContainerModule.controller('TextContainerCtrl', TextContainerCtrl);
 
 export default textContainerModule;

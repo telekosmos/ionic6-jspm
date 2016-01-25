@@ -1,10 +1,23 @@
-<ion-view view-title="Searchhh">
+<ion-view view-title="{{search.viewTitle}}">
   <ion-content class="search">
-    <h1>Search here</h1>
+    <h1>{{search.name}}</h1>
+    <p class="msg">
+    This view shows model binding with the controller for the view.<br/>
+    Also, the text content at the bottom is intended to be font-resizable application-wide: the font size will be the application font size. Changing the font here will be changed also in the 'Text container' view and in all elements with the example 'gestures' behaviour.<br/>
+    In addtion, an external autocomplete directive (from <a href="https://github.com/darylrowland/angucomplete" target="_blank">here</a>) was embedded
+    </p>
     <h3>{{msg}}</h3>
+    <!--
     <input type="text" ng-model="search.searchTerm" placeholder="Input term" />
-    Typed term: <span ng-bind="search.searchTerm"></span>
+    -- Typed term: <span ng-bind="search.searchTerm"></span> -->
+    <div class="autocomplete">
+	    <autocomplete id="nba" selectedobject="team" titlefield="name" 
+	    	placeholder="Search NBA team" localdata="search.teams" searchfields="name">
+	    </autocomplete>
+	    <span>Selected team: <b>{{team.originalObject.name}}</b> <span ng-show="team">({{team.originalObject.conf}} conference)</span></span>
+	  </div>
+
     <hr/>
-    <text-content gestures gesture-type="dragright,dragleft" global></text-content>
+    <text-content gestures gesture-type="dragright,dragleft" local></text-content>
   </ion-content>
 </ion-view>

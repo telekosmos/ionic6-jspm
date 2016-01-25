@@ -1,11 +1,10 @@
 "use strict";
 
 // import template from './gestures.html!text';
-// import controller from './gestures.controller';
 import GestureCtrl from './gestures.controller';
 // import './gestures.css!';
 
-let ctrl = new GestureCtrl();
+// TODO: try to remove the controller and use the scope of the view to handle the values
 let gesturesDirective = function(globals, $ionicGesture) {
 	
 	let link = function(scope, elem, attrs, controller) {

@@ -1,6 +1,15 @@
-<ion-view view-title="Playlists">
+<ion-view view-title="{{playlists.viewTitle}}" class="playlists">
   <ion-content>
-  	Playlists (from controller <span ng-bind-html="name"></span> v{{playlists.version}}):
+    <div class="msg playlists-header">
+    <h1>{{playlists.viewTitle}}</h1>
+    This view shows an example of ionic list items. In the controller there is
+    both scope bound properties and controller properties. The view uses the controllerAs property to access properties not bound to scope.
+    </div>
+    <hr/>
+    <div class="msg playlists-header">
+  	Playlists (from controller
+    '<span ng-bind-html="name"></span>'<br/>{{lists.length}} lists:
+    </div>
     <ion-list>
       <ion-item class="playlist-item" ng-repeat="playlist in lists" 
       	href="#/root/playlists/{{playlist.id}}">

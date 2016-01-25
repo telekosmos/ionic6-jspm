@@ -1,7 +1,7 @@
 class PlaylistsController {
 	constructor($scope) {
 		this.$scope = $scope;
-		this.$scope.name = 'playlists in <b>$scope</b>';
+		this.$scope.name = '<b>PlaylistsController</b>';
 		this.$scope.lists = [
 	    { title: 'Reggae', id: 1 },
 	    { title: 'Chill', id: 2 },
@@ -11,6 +11,7 @@ class PlaylistsController {
 	    { title: 'Cowbell', id: 6 }
 	  ];
 
+	  this.viewTitle = 'Playlists';
 	  this.version='0.1';
 	}
 }

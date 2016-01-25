@@ -1,11 +1,26 @@
-<ion-view view-title="the playlist">
+<ion-view view-title="{{playlist.viewTitle}}">
   <ion-content class="playlist">
-    <h1>Playlist!!</h1>
-    <h3>{{list.title}}</h3> ({{list.songs.length}})<br/>
+  <!--
+  	todo: fine tuning of font resize
+    todo: local resize is lost on view change...?
+  -->
+    <div class="text-container">
+    <h1>{{name}}</h1>
+    </div>
+    <div class="msg text-container">
+    <hr/>
+    A view with routing paramters. The text below contains a resizable text font only for this current view (drag right or left carefully). Last two views in the app share a global font size.
+    <h4>{{list.title}}</h4> (id: {{list.id}}) ({{list.songs.length}} items)
+    </div>
     <ion-list>
       <ion-item class="song" ng-repeat="song in list.songs">
         {{song}}
       </ion-item>
     </ion-list>
+    <div class="msg text-container">
+      <text-component gestures gesture-type="dragright,dragleft" local>
+      Tattoo carbon claymore mine spook into camera gang. Tank-traps tanto katana wristwatch man rebar alcohol shrine singularity human. Digital car knife tank-traps hotdog monofilament artisanal. San Francisco nodal point nano-shanty town 8-bit into cartel boy range-rover Tokyo disposable tiger-team. Plastic boy vinyl man otaku stimulate tube tower realism military-grade nodal point neural post-human papier-mache numinous. Decay car film narrative fetishism drugs shoes systema post-sunglasses tower long-chain hydrocarbons cyber-BASE jump wonton soup pistol. 
+      </text-component>
+    </div>
   </ion-content>
 </ion-view>

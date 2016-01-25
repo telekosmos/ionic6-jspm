@@ -2,17 +2,14 @@
 
 class TextContainerController {
 	constructor($scope, $rootScope) {
-		console.log('Init TextContainerController');
 		this.$scope = $scope;
-		this.name = 'TextContainer controller';
+		this.name = 'TextContainerController';
 		
 		this.$scope.name = 'TextContainer';
 		this.size = 12;
 		this.stepSize = 20;
 		this.rootFontSize = $rootScope.fontSize; 
 
-		// this.$scope.responseToGesture = this.responseToGesture;
-		// this.$scope.test = this.test;
 	}
 
 	responseToGesture(event) {

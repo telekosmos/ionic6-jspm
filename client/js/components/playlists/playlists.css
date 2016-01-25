@@ -1,7 +1,19 @@
 .playlists {
-	color: red;
+	color: black;
+}
+
+.playlists hr {
+	margin-left: 0.9em;
+	margin-right: 0.9em;
 }
 
 .playlist-item {
-	color: green;
+	color: #0d5aae;
 }
+
+.playlists-header {
+	margin-bottom: 0.5em;
+	margin-top: 0.5em;
+	margin-left: 0.9em;
+}
+

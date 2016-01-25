@@ -6,9 +6,9 @@ import HomeMenu from './homemenu/homemenu';
 import TextContainer from './textContainer/textContainer';
 import CommonFactory from './helper.factory';
 // TODO: move textContainer to components
-// TODO: use textContainer in two different views
 // 
 import Gestures from './gestures/gestures';
+import AutoComplete from './autocomplete/autocomplete';
 /*
 import Hero from './hero/hero';
 import Navbar from './navbar/navbar';
@@ -20,7 +20,8 @@ let commonModule = angular.module('app.common', [ // module dependencies below
 	HomeMenu.name,
 	Home.name,
 	TextContainer.name,
-	Gestures.name
+	Gestures.name,
+	AutoComplete.name
 ]);
 
 commonModule.constant('ROOT_JS', '/js');
