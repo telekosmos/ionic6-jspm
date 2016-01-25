@@ -2,6 +2,7 @@
 
 import angular from 'angular';
 import 'angular-ui-router';
+import Gestures from '../gestures/gestures';
 import textContainerComponent from './textContainer.component';
 import textContainerBehavior from './textContainer.behavior';
 import TextContainerCtrl from './textContainer.controller';
@@ -11,7 +12,7 @@ import './textContainer.css!';
 import {factory} from '../../common/helper';
 
 let textContainerModule = angular.module('textContainer', [
-	'ui.router'
+	'ui.router', Gestures.name
 ]);
 
 textContainerModule.config(($stateProvider, $urlRouterProvider) => {
@@ -30,8 +31,9 @@ textContainerModule.config(($stateProvider, $urlRouterProvider) => {
 		});
 });
 
+
 // textContainerModule.directive('textContainer', textContainerComponent);
-textContainerModule.directive('detectGestures', textContainerBehavior);
+// textContainerModule.directive('detectGestures', textContainerBehavior);
 textContainerModule.controller('TextContainerCtrl', TextContainerCtrl);
 
 export default textContainerModule;

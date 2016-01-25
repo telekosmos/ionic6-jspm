@@ -39,7 +39,8 @@ var paths = {
 		path.join(root, 'index.html')
 	],
 	js: resolveToApp('**/*.js'),
-	blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**'),
+	// blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**'),
+	blankTemplates: path.join(__dirname, 'generator', 'component'),
 	projectTemplates: path.join(__dirname, 'generator', 'ionic'),
 	dist: path.join(__dirname, 'www/'),
 	assets: [baseUrl+'/'+packagesFolder, baseUrl+'/assets']
@@ -116,14 +117,21 @@ var generateComponent = function(type) {
 	};
 
 	var name = yargs.name;
+	if (!name) {
+		console.log(chalk.red('Must provide the component name:'));
+		console.log(chalk.yellow('gulp <type>.component --name componentName'));
+		return;
+	}
 	var parentPath = yargs.parent || '';
 	var resolveToWhat = (type == 'common')? resolveToCommon: resolveToComponents;
 	var destPath = path.join(resolveToWhat(), parentPath, name);
 
-	return gulp.src(paths.blankTemplates)
+	var tmpls = ['!'+paths.blankTemplates+'/temp.js', paths.blankTemplates+'/*']
+	return gulp.src(paths.blankTemplates+'/*', {base: paths.blankTemplates})
 		.pipe(template({
 			name: name,
-			upCaseName: cap(name)
+			upCaseName: cap(name),
+			type: type
 		}))
 		.pipe(rename(function(path){
 			path.basename = path.basename.replace('temp', name);
@@ -137,6 +145,8 @@ gulp.task('component.component', function() {
 gulp.task('common.component', function() {
 	return generateComponent('common');
 });
+
+
 
 gulp.task('ionic', function() {
 	var name = yargs.name;
@@ -160,6 +170,8 @@ gulp.task('ionic', function() {
 		}))
 		.pipe(gulp.dest(__dirname));
 });
+
+
 
 /*
 gulp.task('component', function(){

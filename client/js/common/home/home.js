@@ -5,6 +5,7 @@ import 'angular-ui-router';
 import template from './home.html!text';
 import homeComponent from './home.component';
 import HomeController from './home.controller';
+import {GlobalSettings} from './home.services';
 import helper, {factory} from '../helper';
 
 // console.log(helper.ROOT_JS);
@@ -28,7 +29,9 @@ homeModule.config(($stateProvider, $urlRouterProvider) => {
 			}
 		});
 });
-homeModule.directive('home', homeComponent);
+
+homeModule.factory('globals', GlobalSettings);
+// homeModule.directive('home', homeComponent);
 homeModule.controller('HomeController', HomeController);
 
 export default homeModule;

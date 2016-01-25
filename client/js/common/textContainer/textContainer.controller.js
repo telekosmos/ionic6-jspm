@@ -1,17 +1,15 @@
 "use strict";
 
 class TextContainerController {
-	constructor($scope) {
-		console.log('Init TextContainerController');
+	constructor($scope, $rootScope) {
 		this.$scope = $scope;
-		this.name = 'TextContainer controller';
+		this.name = 'TextContainerController';
 		
 		this.$scope.name = 'TextContainer';
 		this.size = 12;
 		this.stepSize = 20;
-		this.fontsizeCls = ''; 
-		// this.$scope.responseToGesture = this.responseToGesture;
-		// this.$scope.test = this.test;
+		this.rootFontSize = $rootScope.fontSize; 
+
 	}
 
 	responseToGesture(event) {
@@ -33,5 +31,5 @@ class TextContainerController {
 	}
 }
 
-TextContainerController.$inject = ['$scope'];
+TextContainerController.$inject = ['$scope', '$rootScope'];
 export default TextContainerController;
