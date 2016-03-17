@@ -1,3 +1,5 @@
+'use strict';
+
 class HomeController {
 	constructor($scope) {
 		this.$scope = $scope;

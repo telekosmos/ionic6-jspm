@@ -18,7 +18,7 @@ let HelperFactory = function(ROOT_JS) {
 	return { getUser, isSignedIn };
 */
 	return {
-		resolveToTemplate
+		resolveToTemplate: resolveToTemplate
 	};
 
 };
