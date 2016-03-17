@@ -8,15 +8,15 @@ import HomemenuComponent from './homemenu.component';
 import HomemenuTemplate from './homemenu.html!text';
 
 describe('Homemenu', ()=>{
-	let $rootScope,
-	makeController;
+	let $rootScope, $scope, $ionicHistory, makeController;
 	
+	beforeEach(angular.mock.module('ionic'));
 	beforeEach(angular.mock.module(HomemenuModule.name));
-	beforeEach(angular.mock.inject((_$rootScope_)=>{
+	beforeEach(angular.mock.inject((_$rootScope_, _$ionicHistory_) => {
 		$rootScope = _$rootScope_;
-		makeController = ()=>{
-			return new HomemenuController();
-		};
+		$ionicHistory = _$ionicHistory_;
+		$scope = $rootScope.$new();
+		makeController = () => new HomemenuController($scope, $ionicHistory);
 	}));
 	
 	describe('Module', ()=>{
@@ -41,7 +41,7 @@ describe('Homemenu', ()=>{
 		// use Regexes to test that you are using the right bindings {{  }}
 		
 		it('should have name in template [REMOVE]', ()=>{
-			expect(HomemenuTemplate).to.match(/{{\s?vm\.name\s?}}/g);
+			expect(HomemenuTemplate).to.match(/\s*<ion\-side\-menu.*/g);
 		});
 	});
 	

@@ -8,15 +8,13 @@ import SearchComponent from './search.component';
 import SearchTemplate from './search.html!text';
 
 describe('Search', ()=>{
-	let $rootScope,
-	makeController;
+	let $rootScope, $scope,	makeController;
 	
 	beforeEach(angular.mock.module(SearchModule.name));
 	beforeEach(angular.mock.inject((_$rootScope_)=>{
 		$rootScope = _$rootScope_;
-		makeController = ()=>{
-			return new SearchController();
-		};
+		$scope = $rootScope.$new();
+		makeController = () => new SearchController($scope);
 	}));
 	
 	describe('Module', ()=>{
@@ -41,7 +39,7 @@ describe('Search', ()=>{
 		// use Regexes to test that you are using the right bindings {{  }}
 		
 		it('should have name in template [REMOVE]', ()=>{
-			expect(SearchTemplate).to.match(/{{\s?vm\.name\s?}}/g);
+			expect(SearchTemplate).to.match(/({{\s?)?search\..*(\s?}})?/g);
 		});
 	});
 	

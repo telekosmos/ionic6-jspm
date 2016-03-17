@@ -33,7 +33,10 @@ module.exports = function(config) {
       // Edit this to your needs
       config: 'jspm.config.js',
       packages: 'client/jspm_packages',
-      loadFiles: ['client/js/**/*.spec.js'], //, 'client/js/jspm_packages/es6-module-loader.js'],
+      loadFiles: [
+        'client/js/**/*.spec.js',
+        'client/js/**/*.spec.*.js'
+      ], //, 'client/js/jspm_packages/es6-module-loader.js'],
       serveFiles: [
         'client/js/**/*.js',
         'client/js/**/*.html',

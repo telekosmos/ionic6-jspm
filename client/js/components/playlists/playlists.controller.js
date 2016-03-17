@@ -12,6 +12,7 @@ class PlaylistsController {
 	  ];
 
 	  this.viewTitle = 'Playlists';
+	  this.name="PlaylistsController";
 	  this.version='0.1';
 	}
 }
