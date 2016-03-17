@@ -32,24 +32,24 @@ module.exports = function(config) {
     jspm: {
       // Edit this to your needs
       config: 'jspm.config.js',
-      packages: 'www/jspm_packages',
-      loadFiles: ['www/js/**/*.spec.js'], //, 'www/js/jspm_packages/es6-module-loader.js'],
+      packages: 'client/jspm_packages',
+      loadFiles: ['client/js/**/*.spec.js'], //, 'client/js/jspm_packages/es6-module-loader.js'],
       serveFiles: [
-        'www/js/**/*.js',
-        'www/js/**/*.html',
-        'www/js/**/*.css'
+        'client/js/**/*.js',
+        'client/js/**/*.html',
+        'client/js/**/*.css'
       ],
       paths: {
-        'js/*': 'base/www/js/*',
-        'github:*': 'base/www/jspm_packages/github/*',
-        'npm:*': 'base/www/jspm_packages/npm/*'
+        'github:*': 'base/client/jspm_packages/github/*',
+        'npm:*': 'base/client/jspm_packages/npm/*',
+        'js/*': 'base/client/js/*'
       },
       urlRoot: './'
     },
 
     proxies: {
       // '/jspm_packages': '/base/jspm_packages',
-      '/www': '/base/www'
+      '/client': '/base/client'
       // '/jspm.config.js': '/base/jspm.config.js'
     },
 
@@ -59,6 +59,15 @@ module.exports = function(config) {
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
+    client: {
+      captureConsole: true,
+      mocha: {
+        bail: false,
+        // require: 'should'
+        reporter: 'spec',
+        ui: 'bdd'
+      }
+    }
 
   });
 };

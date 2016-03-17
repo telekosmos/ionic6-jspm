@@ -5,6 +5,7 @@ class GestureCtrl {
 		console.log('Init GestureCtrl');
 		this.font = this.localFont;
 
+		this.name = "GestureCtrl";
 		this._global = false;
 		this._globals = globals;
 		this._$scope = $scope;

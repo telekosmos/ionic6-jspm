@@ -10,15 +10,13 @@ import TextContainerComponent from './textContainer.component';
 import TextContainerTemplate from './textContainer.html!text';
 
 describe('TextContainer', ()=>{
-	let $rootScope,
-	makeController;
+	let $rootScope, $scope,	makeController;
 	
 	beforeEach(angular.mock.module(TextContainerModule.name));
 	beforeEach(angular.mock.inject((_$rootScope_)=>{
 		$rootScope = _$rootScope_;
-		makeController = ()=>{
-			return new TextContainerController();
-		};
+		$scope = $rootScope.$new();
+		makeController = () => new TextContainerController($scope, $rootScope);
 	}));
 	
 	describe('Module', ()=>{
@@ -43,7 +41,7 @@ describe('TextContainer', ()=>{
 		// use Regexes to test that you are using the right bindings {{  }}
 		
 		it('should have name in template [REMOVE]', ()=>{
-			expect(TextContainerTemplate).to.match(/{{\s?detect-gestures\s?}}/g);
+			expect(TextContainerTemplate).to.match(/.*\sgesture\-type=".*"/g);
 		});
 	});
 	
