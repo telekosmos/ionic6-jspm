@@ -13,10 +13,11 @@ System.config({
   },
 
   map: {
-    "angular": "github:angular/bower-angular@1.4.8",
+    "angular": "github:angular/bower-angular@1.5.1",
+    "angular-animate": "github:angular/bower-angular-animate@1.5.1",
     "angular-mocks": "npm:angular-mocks@1.4.8",
-    "angular-sanitize": "github:angular/bower-angular-sanitize@1.4.8",
-    "angular-ui-router": "github:angular-ui/ui-router@0.2.15",
+    "angular-sanitize": "github:angular/bower-angular-sanitize@1.5.1",
+    "angular-ui-router": "github:angular-ui/ui-router@0.2.18",
     "babel": "npm:babel-core@5.8.25",
     "babel-runtime": "npm:babel-runtime@5.8.25",
     "capaj/systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@0.5.0",
@@ -27,17 +28,14 @@ System.config({
     "normalize.css": "github:necolas/normalize.css@3.0.3",
     "path": "github:jspm/nodelibs-path@0.1.0",
     "text": "github:systemjs/plugin-text@0.0.2",
-    "github:angular-ui/ui-router@0.2.13": {
-      "angular": "github:angular/bower-angular@1.4.8"
+    "github:angular-ui/ui-router@0.2.18": {
+      "angular": "github:angular/bower-angular@1.5.1"
     },
-    "github:angular-ui/ui-router@0.2.15": {
-      "angular": "github:angular/bower-angular@1.4.8"
+    "github:angular/bower-angular-animate@1.5.1": {
+      "angular": "github:angular/bower-angular@1.5.1"
     },
-    "github:angular/bower-angular-animate@1.4.8": {
-      "angular": "github:angular/bower-angular@1.4.8"
-    },
-    "github:angular/bower-angular-sanitize@1.4.8": {
-      "angular": "github:angular/bower-angular@1.4.8"
+    "github:angular/bower-angular-sanitize@1.5.1": {
+      "angular": "github:angular/bower-angular@1.5.1"
     },
     "github:capaj/systemjs-hot-reloader@0.5.0": {
       "debug": "npm:debug@2.2.0",
@@ -45,10 +43,10 @@ System.config({
       "weakee": "npm:weakee@0.9.1"
     },
     "github:driftyco/ionic-bower@1.2.4": {
-      "angular": "github:angular/bower-angular@1.4.8",
-      "angular-animate": "github:angular/bower-angular-animate@1.4.8",
-      "angular-sanitize": "github:angular/bower-angular-sanitize@1.4.8",
-      "angular-ui-router": "github:angular-ui/ui-router@0.2.13",
+      "angular": "github:angular/bower-angular@1.5.1",
+      "angular-animate": "github:angular/bower-angular-animate@1.5.1",
+      "angular-sanitize": "github:angular/bower-angular-sanitize@1.5.1",
+      "angular-ui-router": "github:angular-ui/ui-router@0.2.18",
       "css": "github:systemjs/plugin-css@0.1.20"
     },
     "github:jspm/nodelibs-assert@0.1.0": {

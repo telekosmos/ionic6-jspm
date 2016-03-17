@@ -10,15 +10,13 @@ import TextContentComponent from './textContent.component';
 import TextContentTemplate from './textContent.html!text';
 
 describe('TextContent', ()=>{
-	let $rootScope,
-	makeController;
+	let $rootScope, $scope, makeController;
 	
 	beforeEach(angular.mock.module(TextContentModule.name));
 	beforeEach(angular.mock.inject((_$rootScope_)=>{
 		$rootScope = _$rootScope_;
-		makeController = ()=>{
-			return new TextContentController();
-		};
+		$scope = $rootScope.$new();
+		makeController = () => new TextContentController($scope);
 	}));
 	
 	describe('Module', ()=>{
@@ -43,7 +41,7 @@ describe('TextContent', ()=>{
 		// use Regexes to test that you are using the right bindings {{  }}
 		
 		it('should have name in template [REMOVE]', ()=>{
-			expect(TextContentTemplate).to.match(/{{\s?vm\.name\s?}}/g);
+			expect(TextContentTemplate).to.match(/\s?TextContentCtrl\..*\s?/g);
 		});
 	});
 	
