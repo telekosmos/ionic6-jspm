@@ -8,15 +8,13 @@ import PlaylistsComponent from './playlists.component';
 import PlaylistsTemplate from './playlists.html!text';
 
 describe('Playlists', ()=>{
-	let $rootScope,
-	makeController;
+	let $rootScope, $scope,	makeController;
 	
 	beforeEach(angular.mock.module(PlaylistsModule.name));
 	beforeEach(angular.mock.inject((_$rootScope_)=>{
 		$rootScope = _$rootScope_;
-		makeController = ()=>{
-			return new PlaylistsController();
-		};
+		$scope = $rootScope.$new();
+		makeController = () => new PlaylistsController($scope);
 	}));
 	
 	describe('Module', ()=>{
@@ -41,7 +39,7 @@ describe('Playlists', ()=>{
 		// use Regexes to test that you are using the right bindings {{  }}
 		
 		it('should have name in template [REMOVE]', ()=>{
-			expect(PlaylistsTemplate).to.match(/{{\s?vm\.name\s?}}/g);
+			expect(PlaylistsTemplate).to.match(/{{\s?playlists\..*\s?}}/g);
 		});
 	});
 	

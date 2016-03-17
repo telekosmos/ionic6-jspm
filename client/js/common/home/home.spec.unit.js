@@ -8,15 +8,13 @@ import HomeComponent from './home.component';
 import HomeTemplate from './home.html!text';
 
 describe('Home', ()=>{
-	let $rootScope,
-	makeController;
+	let $rootScope, $scope, makeController;
 	
 	beforeEach(angular.mock.module(HomeModule.name));
 	beforeEach(angular.mock.inject((_$rootScope_)=>{
 		$rootScope = _$rootScope_;
-		makeController = ()=>{
-			return new HomeController();
-		};
+		$scope = $rootScope.$new();
+		makeController = ()=> new HomeController($scope);
 	}));
 	
 	describe('Module', ()=>{
@@ -41,7 +39,7 @@ describe('Home', ()=>{
 		// use Regexes to test that you are using the right bindings {{  }}
 		
 		it('should have name in template [REMOVE]', ()=>{
-			expect(HomeTemplate).to.match(/{{\s?vm\.name\s?}}/g);
+			expect(HomeTemplate).to.match(/{{\s?home\.name\s?}}/g);
 		});
 	});
 	

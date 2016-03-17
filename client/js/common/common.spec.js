@@ -14,8 +14,8 @@ describe('Helper', () => {
 		angular.mock.inject(function(_ROOT_JS_, _commonFactory_) {
 			rootJsConstant = _ROOT_JS_;
 			factory = _commonFactory_;
-		})
-	})
+		});
+	});
 	
 	describe('Module', () => {
 		// test things about the module

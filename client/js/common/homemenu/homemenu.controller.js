@@ -1,11 +1,11 @@
 'use strict';
 
-
 class HomemenuController {
 	constructor($scope, $ionicHistory) {
 		this.$scope = $scope;
 		this.$ionicHistory = $ionicHistory;
 		this.$scope.name = 'homemenu';
+    this.name = 'homemenu';
 	}
 
 	goBack() {
