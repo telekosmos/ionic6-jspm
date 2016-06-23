@@ -7,6 +7,8 @@ var gulp        = require('gulp'),
     htmlreplace = require('gulp-html-replace'),
     ngAnnotate  = require('gulp-ng-annotate'),
     serve       = require('browser-sync'),
+    reload			= serve.reload,
+    sass				= require('gulp-sass')
     yargs       = require('yargs').argv,
     rimraf      = require('rimraf'),
     filter = require('gulp-filter'),
@@ -34,6 +36,7 @@ var resolveToCommon = resolveTo(rootJs+'/common');
 // map of all our paths
 var paths = {
 	css: resolveToApp('**/*.css'),
+	sass: resolveToApp('**/*.sass'),
 	html: [
 		resolveToApp('**/*.html'),
 		path.join(root, 'index.html')
@@ -46,7 +49,8 @@ var paths = {
 	assets: [baseUrl+'/'+packagesFolder, baseUrl+'/assets']
 };
 
-gulp.task('serve', function(){
+
+gulp.task('serve', ['sass'], function() {
 	'use strict'
 	require('chokidar-socket-emitter')({port: 8081, path: 'client', relativeTo: 'client'})
 	serve({
@@ -66,9 +70,13 @@ gulp.task('serve', function(){
 			}
 		},
 	});
+
+	gulp.watch(paths.sass, ['sass']);
+	// gulp.watch(paths.html).on('change', reload)
 });
 
-gulp.task('build', function() {
+
+gulp.task('build', ['sass'], function() {
 	var dist = path.join(paths.dist + 'app.js');
 	rimraf.sync(path.join(paths.dist, '*'));
 	// Use JSPM to bundle our app
@@ -110,6 +118,14 @@ gulp.task('build', function() {
 				.pipe(gulp.dest(paths.dist));
 		});
 });
+
+
+gulp.task('sass', function() {
+	return gulp.src(paths.sass, {base: 'client/js'})
+		.pipe(sass())
+		.pipe(gulp.dest('client/js'))
+		.pipe(reload({stream: true}))
+})
 
 var generateComponent = function(type) {
 	var cap = function(val) {

@@ -9,6 +9,9 @@ import CommonFactory from './helper.factory';
 // 
 import Gestures from './gestures/gestures';
 import AutoComplete from './autocomplete/autocomplete';
+
+import './common.css!';
+
 /*
 import Hero from './hero/hero';
 import Navbar from './navbar/navbar';
