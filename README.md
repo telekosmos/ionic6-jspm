@@ -17,7 +17,8 @@ Ready to use with __cordova__/__ionic__.
 - Livereload (via __browser-sync__)
 - Development with sourcemaps
 - Assets referenced by packages (like fonts or images) added to build (check [this](https://github.com/systemjs/plugin-css/issues/23), [this](https://github.com/systemjs/builder/issues/166) and mostly [this](https://github.com/systemjs/plugin-css/issues/61)).
--  Application assets are also made available for production on build time
+- Application assets are also made available for production on build time
+- SASS support (check [feat/sass](https://github.com/telekosmos/ionic6-jspm/tree/feat/sass) branch)
 
 ## Usage
 
