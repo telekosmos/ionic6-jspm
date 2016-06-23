@@ -17,7 +17,8 @@ Ready to use with __cordova__/__ionic__.
 - Livereload (via __browser-sync__)
 - Development with sourcemaps
 - Assets referenced by packages (like fonts or images) added to build (check [this](https://github.com/systemjs/plugin-css/issues/23), [this](https://github.com/systemjs/builder/issues/166) and mostly [this](https://github.com/systemjs/plugin-css/issues/61)).
--  Application assets are also made available for production on build time
+- Application assets are also made available for production on build time
+- SASS support. When building/serving, SASS files will be compiled into CSS files
 
 ## Usage
 
@@ -26,6 +27,7 @@ Ready to use with __cordova__/__ionic__.
 	git clone http://github.com/telekosmos/ionic6-jspm && cd ionic6-jspm
 	npm install
 	jspm install
+	gulp serve
 	
 	
 ### Development
@@ -65,7 +67,6 @@ MIT
 
 ### Future?
 
-- Add support for SCSS
 - Add support for Babel6
 - Better gulp task management
 
